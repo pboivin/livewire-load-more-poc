@@ -1,4 +1,4 @@
-<div class="border border-red-500">
+<div>
     @foreach ($posts->chunk(2) as $row)
         <div class="flex">
             @foreach ($row as $item)
