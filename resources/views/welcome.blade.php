@@ -11,16 +11,8 @@
         @livewireStyles
     </head>
     <body class="antialiased p-4">
-        <div>
-            All posts:
-        </div>
-
-        <div>
-            <ol class="list-decimal ml-12">
-                @foreach (\App\Models\Post::all() as $post)
-                    <li>{{ $post->title }}</li>
-                @endforeach
-            </ol>
+        <div class="max-w-6xl mx-auto">
+            @livewire('post-list')
         </div>
 
         @livewireScripts
