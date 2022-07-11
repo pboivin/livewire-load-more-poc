@@ -12,15 +12,11 @@ class PostList extends Component
     public $maxPage = 1;
     public $hasNextPage = false;
     public $sortDirection = 'asc';
+    public $queryCount = 0;
 
     public function mount()
     {
-        $this->postIdChunks = Post::orderBy('title', $this->sortDirection)
-            ->pluck('id')
-            ->chunk(12)
-            ->toArray();
-
-        $this->maxPage = count($this->postIdChunks);
+        $this->prepareChunks();
     }
 
     public function render()
@@ -35,5 +31,24 @@ class PostList extends Component
         if ($this->page < $this->maxPage) {
             $this->page++;
         }
+    }
+
+    public function prepareChunks()
+    {
+        $this->postIdChunks = Post::orderBy('title', $this->sortDirection)
+            ->pluck('id')
+            ->chunk(12)
+            ->toArray();
+
+        $this->page = 1;
+
+        $this->maxPage = count($this->postIdChunks);
+
+        $this->queryCount++;
+    }
+
+    public function updatedSortDirection()
+    {
+        $this->prepareChunks();
     }
 }
