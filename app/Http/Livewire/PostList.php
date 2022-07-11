@@ -11,10 +11,15 @@ class PostList extends Component
     public $page = 1;
     public $maxPage = 1;
     public $hasNextPage = false;
+    public $sortDirection = 'asc';
 
     public function mount()
     {
-        $this->postIdChunks = Post::pluck('id')->chunk(12)->toArray();
+        $this->postIdChunks = Post::orderBy('title', $this->sortDirection)
+            ->pluck('id')
+            ->chunk(12)
+            ->toArray();
+
         $this->maxPage = count($this->postIdChunks);
     }
 
