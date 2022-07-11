@@ -1,5 +1,5 @@
 <div>
-    <div class="mx-4 my-8 flex items-center text-sm">
+    <div class="my-8 flex items-center text-sm">
         <label for="sortDirection" class="mr-4">
             Order by:
         </label>
@@ -22,7 +22,7 @@
         @endfor
     </div>
 
-    @if ($hasNextPage)
+    @if ($this->hasNextPage())
         <div class="my-32">
             <button
                 class="w-full p-4 bg-black text-white text-xl"

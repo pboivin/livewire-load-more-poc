@@ -1,29 +1,19 @@
-<div>
-    @foreach ($posts->chunk(2) as $row)
-        <div class="flex">
-            @foreach ($row as $item)
-                <div class="w-1/2 mx-4 mb-16">
-                    <div>
-                        <img
-                            class="bg-gray-100 w-full"
-                            src="https://picsum.photos/id/{{ $item->id * 3 }}/800/600"
-                            width="800"
-                            height="600"
-                            alt=""
-                        >
-                    </div>
+<div class="grid grid-cols-2 gap-4">
+    @foreach ($posts as $post)
+        <div class="mb-16">
+            <div>
+                <img
+                    class="bg-gray-100 w-full"
+                    src="https://picsum.photos/id/{{ $post->id * 3 }}/800/600"
+                    width="800"
+                    height="600"
+                    alt=""
+                >
+            </div>
 
-                    <div class="mt-4">
-                        {{ $item->title }}
-                    </div>
-                </div>
-            @endforeach
-
-            @if (count($row) === 1)
-                <div class="w-1/2 mx-4 mb-16">
-                    {{-- spacer  --}}
-                </div>
-            @endif
+            <div class="mt-4">
+                {{ $post->title }}
+            </div>
         </div>
     @endforeach
 </div>

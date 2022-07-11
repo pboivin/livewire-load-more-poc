@@ -10,7 +10,6 @@ class PostList extends Component
     public $postIdChunks = [];
     public $page = 1;
     public $maxPage = 1;
-    public $hasNextPage = false;
     public $sortDirection = 'asc';
     public $queryCount = 0;
 
@@ -21,14 +20,17 @@ class PostList extends Component
 
     public function render()
     {
-        $this->hasNextPage = $this->page < $this->maxPage;
-
         return view('livewire.post-list');
+    }
+
+    public function updatedSortDirection()
+    {
+        $this->prepareChunks();
     }
 
     public function loadMore()
     {
-        if ($this->page < $this->maxPage) {
+        if ($this->hasNextPage()) {
             $this->page++;
         }
     }
@@ -47,8 +49,8 @@ class PostList extends Component
         $this->queryCount++;
     }
 
-    public function updatedSortDirection()
+    public function hasNextPage()
     {
-        $this->prepareChunks();
+        return $this->page < $this->maxPage;
     }
 }
