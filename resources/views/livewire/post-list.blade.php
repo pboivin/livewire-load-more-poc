@@ -1,5 +1,5 @@
 <div>
-    <div class="my-8 flex items-center text-sm">
+    <div class="mt-8 lg:mt-16 flex items-center text-sm">
         <label for="sortDirection" class="mr-4">
             Order by:
         </label>
@@ -23,7 +23,7 @@
     </div>
 
     @if ($this->hasNextPage())
-        <div class="my-32">
+        <div class="mt-8 lg:mt-16">
             <button
                 class="w-full p-4 bg-black text-white text-xl"
                 wire:click="loadMore"
@@ -32,4 +32,6 @@
             </button>
         </div>
     @endif
+
+    <div class="pt-8 lg:pt-16"></div>
 </div>

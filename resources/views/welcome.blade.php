@@ -10,7 +10,7 @@
 
         @livewireStyles
     </head>
-    <body class="antialiased p-4">
+    <body class="antialiased px-4">
         <div class="max-w-6xl mx-auto">
             @livewire('post-list')
         </div>
