@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class PostList extends Component
 {
+    const ITEMS_PER_PAGE = 12;
+
     public $postIdChunks = [];
     public $page = 1;
     public $maxPage = 1;
@@ -37,9 +39,10 @@ class PostList extends Component
 
     public function prepareChunks()
     {
-        $this->postIdChunks = Post::orderBy('title', $this->sortDirection)
+        $this->postIdChunks = DB::table('posts')
+            ->orderBy('title', $this->sortDirection)
             ->pluck('id')
-            ->chunk(12)
+            ->chunk(self::ITEMS_PER_PAGE)
             ->toArray();
 
         $this->page = 1;
