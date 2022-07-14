@@ -3,7 +3,7 @@
         <div>
             <img
                 class="bg-gray-100 w-full"
-                src="https://picsum.photos/id/{{ $post->id * 3 }}/800/600"
+                src="https://picsum.photos/id/{{ ($post->id * 3) % 100 }}/800/600"
                 width="800"
                 height="600"
                 alt=""
